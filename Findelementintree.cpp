@@ -1,7 +1,7 @@
 struct BSTnode{
 int data;
-BSTnode *left;
-BSTnode *right;
+struct BSTnode *left;
+struct BSTnode *right;
 };
 struct BSTnode* FIND(struct BSTnode *root,int data){ //it will return the address of the node when the search is done
     if(root==NULL)
