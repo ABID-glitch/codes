@@ -1,66 +1,72 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-struct node{
-int value;
-struct node *next;
+struct Node
+{
+    int value;
+    Node *l2n;
 };
+Node *start=NULL;
 
-struct node *start=NULL;
-
-bool isempty(){
-if(start==NULL)
+bool isEmpty()
+{
+    if(start==NULL)
     return true;
     else
-        return false;
+    return false;
 }
+void push(int x)
+    {
+        Node *p= new Node;
+        p->value=x;
+        p->l2n=start;
+        start=p;
+    }
 
-void push(int x){
-struct node *p=new node;
-p->value=x;
-p->next=start;
-start=p;
-}
-
-void pop(){
-if(isempty()){
-    cout<<"stack is empty"<<endl;
-
-}
-else
+void pop()
 {
-
-struct node *p=start;
-start=start->next;
-delete(p);
-}
-}
-
-void peek(){
-if(isempty())
-    cout<<"Stack is empty"<<endl;
+    if( isEmpty() )
+    {
+        cout<<"Stack is Empty";
+    }
     else
-        cout<<"Element at the top"<<start->value<<endl;
+    {
+        Node *p=start;
+        start=start->l2n;
+        delete(p);
+    }
+}
+void peek()
+{
+    if( isEmpty() )
+    cout<<"Stack is Empty.";
+    else
+    cout<<"Element at the top="<<start->value;
 }
 
-int main(){
-int ch,a;
-while(1){
-cout<<"Is empty"<<endl;
-cout<<"push"<<endl;
-cout<<"pop"<<endl;
-cout<<"peek"<<endl;
 
-cout<<"Enter your choice : "<<endl;
-cin>>ch;
-switch(ch){
-case 1: isempty();break;
-case 2: cin>>a;
-        push(a);break;
-case 3: pop();break;
-case 4: peek();break;
+int main()
+{
+    int choice,a,tmp=1;
+    while(tmp==1)
+    {
+    cout<<"\n1.Push"<<"\n2.Pop"<<"\n3.Peek"<<"\n4.Exit";
+    cout<<"\nEnter your choice:";
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:cout<<"Enter value:";
+        cin>>a;
+        push(a);
+        break;
+        case 2:pop();
+        break;
+        case 3:peek();
+        break;
+	case 4: tmp=0;
+        default:cout<<"**Invalid choice**";
 
-default: cout<<"Invalid choice "<<endl;
-}
-}
+    }
+    }
+    return 0;
 }
